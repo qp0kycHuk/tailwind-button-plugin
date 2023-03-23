@@ -127,3 +127,6 @@ npm install @qpokychuk/tailwind-button-plugin --save
   }
 }
 ```
+
+
+[Поддержать автора](https://www.tinkoff.ru/rm/yuferov.sergey18/NC17C11734)
