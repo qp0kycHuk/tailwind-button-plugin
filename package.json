@@ -1,6 +1,6 @@
 {
   "name": "@qpokychuk/tailwind-button-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "buttons components for tailwind",
   "main": "index.js",
   "scripts": {
