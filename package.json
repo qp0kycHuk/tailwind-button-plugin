@@ -1,0 +1,15 @@
+{
+  "name": "@qpokychuk/tailwind-button-plugin",
+  "version": "1.0.0",
+  "description": "buttons components for tailwind",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tailwind",
+    "buttons"
+  ],
+  "author": "qpokychuk",
+  "license": "ISC"
+}
