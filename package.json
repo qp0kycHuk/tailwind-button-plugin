@@ -8,8 +8,9 @@
   },
   "keywords": [
     "tailwind",
+    "plugin",
     "buttons"
   ],
-  "author": "qpokychuk",
+  "author": "Yuferov Sergey <serega990112@mail.ru>",
   "license": "ISC"
 }
