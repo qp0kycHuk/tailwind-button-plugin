@@ -40,7 +40,7 @@ npm install @qpokychuk/tailwind-button-plugin --save
 
 Если вам нужно использовать одноразовое значение `btnSize`, которое не имеет смысла включать в вашу тему, используйте квадратные скобки, чтобы сгенерировать свойство "на лету", используя любое произвольное значение.
 
-![Screenshot_3](https://user-images.githubusercontent.com/42573149/227128910-71d2e29a-06d6-4b09-b763-4dbd46ce4ee8.jpg)
+![Screenshot_6](https://user-images.githubusercontent.com/42573149/227129527-85410c6d-4cb7-49da-9ac2-87b8fe2391e1.jpg)
 
 
 ## Установка закругления кнопки
