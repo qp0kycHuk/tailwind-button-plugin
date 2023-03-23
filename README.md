@@ -98,7 +98,7 @@ npm install @qpokychuk/tailwind-button-plugin --save
 
 ## Установка тени кнопки
 
-Управляйте закруглением кнопки с помощью класса `btn-shadow` или с помощью утилит `shadow` из tailwind.
+Управляйте тенью кнопки с помощью класса `btn-shadow` или с помощью утилит `shadow` из tailwind.
 
 ```html
 <button class="btn btn-shadow ...">text here</button>
