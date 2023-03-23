@@ -6,6 +6,14 @@
 npm install @qpokychuk/tailwind-button-plugin --save
 ```
 
+```js
+// tailwind.config.js
+{    
+  plugins: [
+    require('@qpokychuk/tailwind-button-plugin'),
+  ],
+}
+```
 
 ## Установка цвета кнопки
 
@@ -53,9 +61,5 @@ npm install @qpokychuk/tailwind-button-plugin --save
       ['2xl']: '64px',
     }
   }
-    
-  plugins: [
-    require('@qpokychuk/tailwind-button-plugin'),
-  ],
 }
 ```
