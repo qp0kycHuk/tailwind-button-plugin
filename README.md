@@ -5,7 +5,7 @@
 ## Установка
 
 ```bash
-npm install @qpokychuk/tailwind-button-plugin --save
+npm install @qpokychuk/tailwind-button-plugin --save-dev
 ```
 
 ```js
