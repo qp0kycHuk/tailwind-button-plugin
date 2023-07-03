@@ -15,8 +15,10 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       fontWeight: 'bold',
       color: 'var(--tw-btn-color)',
       userSelect: 'none',
-      '&:hover': {
-        background: 'var(--tw-btn-color-light)',
+      '@media(hover)': {
+        '&:hover': {
+          background: 'var(--tw-btn-color-light)',
+        },
       },
       '&:focus': {
         zIndex: 2,
@@ -29,8 +31,10 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       background: 'var(--tw-btn-color)',
       border: 'transparent',
       color: '#fff',
-      '&:hover': {
-        background: 'var(--tw-btn-color)',
+      '@media(hover)': {
+        '&:hover': {
+          background: 'var(--tw-btn-color)',
+        },
       },
       '&:focus:not(:active)': {
         background: 'var(--tw-btn-color)',
@@ -42,8 +46,10 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       background: 'transparent',
       border: '1px solid var(--tw-btn-color)',
       color: 'var(--tw-btn-color)',
-      '&:hover': {
-        background: 'var(--tw-btn-color-light)'
+      '@media(hover)': {
+        '&:hover': {
+          background: 'var(--tw-btn-color-light)'
+        },
       },
       '&:focus:not(:active)': {
         background: 'var(--tw-btn-color-light)',
@@ -53,8 +59,10 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
     '.btn-light': {
       background: 'var(--tw-btn-color-light)',
       color: 'var(--tw-btn-color)',
-      '&:hover': {
-        background: 'var(--tw-btn-color-light)',
+      '@media(hover)': {
+        '&:hover': {
+          background: 'var(--tw-btn-color-light)',
+        },
       },
       '&:focus:not(:active)': {
         background: 'var(--tw-btn-color-light)',
@@ -64,9 +72,11 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
     '.btn-whitebg': {
       background: '#fff',
       boxShadow: theme('boxShadow.md'),
-      '&:hover': {
-        background: '#fff',
-        boxShadow: theme('boxShadow.lg'),
+      '@media(hover)': {
+        '&:hover': {
+          background: '#fff',
+          boxShadow: theme('boxShadow.lg'),
+        },
       },
       '&:focus:not(:active)': {
         background: '#fff',
@@ -76,8 +86,10 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
     },
     '.btn-shadow': {
       boxShadow: theme('boxShadow.md'),
-      '&:hover': {
-        boxShadow: theme('boxShadow.lg'),
+      '@media(hover)': {
+        '&:hover': {
+          boxShadow: theme('boxShadow.lg'),
+        },
       },
       '&:active': {
         boxShadow: theme('boxShadow.md'),
@@ -92,8 +104,10 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
 
       borderRadius: 0,
       color: 'var(--tw-btn-color)',
-      '&:hover': {
-        background: 'none',
+      '@media(hover)': {
+        '&:hover': {
+          background: 'none',
+        },
       },
 
       '&:focus:not(:active)': {
@@ -102,6 +116,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       }
     },
     '.btn-icon': {
+      minWidth: 'var(--size)',
       width: 'var(--size)',
       padding: 0,
     },
@@ -140,10 +155,12 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
         return ({
           '--tw-btn-color': string,
           '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: 0.10 }),
-          '&:hover': {
-            '--tw-btn-color': hovered,
-            '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: 0.20 }),
-          }
+          '@media(hover)': {
+            '&:hover': {
+              '--tw-btn-color': hovered,
+              '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: 0.20 }),
+            }
+          },
         })
       },
     },
@@ -165,7 +182,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
 
     }
   }
-}) 
+})
 
 function colorShade(color, amount) {
 
