@@ -15,7 +15,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       fontWeight: 'bold',
       color: 'var(--tw-btn-color)',
       userSelect: 'none',
-      '@media(hover)': {
+      '@media (hover)': {
         '&:hover': {
           background: 'var(--tw-btn-color-light)',
         },
@@ -31,7 +31,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       background: 'var(--tw-btn-color)',
       border: 'transparent',
       color: '#fff',
-      '@media(hover)': {
+      '@media (hover)': {
         '&:hover': {
           background: 'var(--tw-btn-color)',
         },
@@ -46,7 +46,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       background: 'transparent',
       border: '1px solid var(--tw-btn-color)',
       color: 'var(--tw-btn-color)',
-      '@media(hover)': {
+      '@media (hover)': {
         '&:hover': {
           background: 'var(--tw-btn-color-light)'
         },
@@ -59,7 +59,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
     '.btn-light': {
       background: 'var(--tw-btn-color-light)',
       color: 'var(--tw-btn-color)',
-      '@media(hover)': {
+      '@media (hover)': {
         '&:hover': {
           background: 'var(--tw-btn-color-light)',
         },
@@ -72,7 +72,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
     '.btn-whitebg': {
       background: '#fff',
       boxShadow: theme('boxShadow.md'),
-      '@media(hover)': {
+      '@media (hover)': {
         '&:hover': {
           background: '#fff',
           boxShadow: theme('boxShadow.lg'),
@@ -86,7 +86,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
     },
     '.btn-shadow': {
       boxShadow: theme('boxShadow.md'),
-      '@media(hover)': {
+      '@media (hover)': {
         '&:hover': {
           boxShadow: theme('boxShadow.lg'),
         },
@@ -104,7 +104,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
 
       borderRadius: 0,
       color: 'var(--tw-btn-color)',
-      '@media(hover)': {
+      '@media (hover)': {
         '&:hover': {
           background: 'none',
         },
@@ -155,7 +155,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
         return ({
           '--tw-btn-color': string,
           '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: 0.10 }),
-          '@media(hover)': {
+          '@media (hover)': {
             '&:hover': {
               '--tw-btn-color': hovered,
               '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: 0.20 }),
