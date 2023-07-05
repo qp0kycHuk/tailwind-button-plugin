@@ -2,9 +2,30 @@ const plugin = require('tailwindcss/plugin')
 const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
 const { parseColor, formatColor } = require('tailwindcss/lib/util/color')
 
-module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
+const defaultOptions = {
+  className: 'btn',
+  disabledOpacity: 0.4,
+  colorHoverOffset: 25,
+  lightColorOpacity: 0.1,
+  lightColorOpacityHover: 0.2,
+  transition: '.2s ease',
+  withFocusStyles: false,
+  targetGroupSelector: '.btn-group',
+  targetPeerSelector: '.btn-peer',
+  activeStiles: {
+    transform: 'translateY(2px)',
+  }
+}
+
+module.exports = plugin.withOptions((opts) => function ({ addComponents, matchUtilities, theme }) {
+  const options = {
+    ...defaultOptions,
+    ...opts
+  }
+  options.className = options.className.trim()
+
   addComponents({
-    '.btn': {
+    [`.${options.className}`]: {
       '--size': theme('btnSize.base'),
       display: 'flex',
       alignItems: 'center',
@@ -12,117 +33,112 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
       position: 'relative',
       height: 'var(--size)',
       padding: '0 calc(var(--size) / 2)',
-      transition: '.2s ease',
-      fontWeight: 'bold',
+      transition: options.transition,
       color: 'var(--tw-btn-color)',
       userSelect: 'none',
       '@media (hover)': {
-        '&:hover': {
+        [getStateSelector('hover', options)]: {
           background: 'var(--tw-btn-color-light)',
         },
       },
       '&:focus': {
         zIndex: 2,
       },
-      '&:active': {
-        transform: 'translateY(2px)',
-      }
+      [getStateSelector('active', options)]: options.activeStiles
     },
-    '.btn-fill': {
+    [`.${options.className}-fill`]: {
       background: 'var(--tw-btn-color)',
       border: 'transparent',
       color: '#fff',
       '@media (hover)': {
-        '&:hover': {
+        [getStateSelector('hover', options)]: {
           background: 'var(--tw-btn-color)',
         },
       },
-      '&:focus:not(:active)': {
-        background: 'var(--tw-btn-color)',
-        boxShadow: '0 0 0 5px var(--tw-btn-color-light)'
+      ...optional({
+        [getStateSelector('focus:not(:active)', options)]: {
+          background: 'var(--tw-btn-color)',
+          boxShadow: '0 0 0 5px var(--tw-btn-color-light)'
 
-      }
+        }
+      }, options.withFocusStyles),
     },
-    '.btn-contur': {
+    [`.${options.className}-contur`]: {
       background: 'transparent',
       border: '1px solid var(--tw-btn-color)',
       color: 'var(--tw-btn-color)',
       '@media (hover)': {
-        '&:hover': {
+        [getStateSelector('hover', options)]: {
           background: 'var(--tw-btn-color-light)'
         },
       },
-      '&:focus:not(:active)': {
-        background: 'var(--tw-btn-color-light)',
-        boxShadow: '0 0 0 2px var(--tw-btn-color)'
-      }
+      ...optional({
+        [getStateSelector('focus:not(:active)', options)]: {
+          background: 'var(--tw-btn-color-light)',
+          boxShadow: '0 0 0 2px var(--tw-btn-color)'
+        }
+      }, options.withFocusStyles),
     },
-    '.btn-light': {
+    [`.${options.className}-light`]: {
       background: 'var(--tw-btn-color-light)',
       color: 'var(--tw-btn-color)',
       '@media (hover)': {
-        '&:hover': {
+        [getStateSelector('hover', options)]: {
           background: 'var(--tw-btn-color-light)',
         },
       },
-      '&:focus:not(:active)': {
-        background: 'var(--tw-btn-color-light)',
-        boxShadow: '0 0 0 2px var(--tw-btn-color)'
-      }
+      ...optional({
+        [getStateSelector('focus:not(:active)', options)]: {
+          background: 'var(--tw-btn-color-light)',
+          boxShadow: '0 0 0 2px var(--tw-btn-color)'
+        }
+      }, options.withFocusStyles),
     },
-    '.btn-whitebg': {
+    [`.${options.className}-whitebg`]: {
       background: '#fff',
       boxShadow: theme('boxShadow.md'),
       '@media (hover)': {
-        '&:hover': {
+        [getStateSelector('hover', options)]: {
           background: '#fff',
           boxShadow: theme('boxShadow.lg'),
         },
       },
-      '&:focus:not(:active)': {
-        background: '#fff',
-        boxShadow: theme('boxShadow.md') + ', 0 0 0 2px var(--tw-btn-color)',
+      ...optional({
+        [getStateSelector('focus:not(:active)', options)]: {
+          background: '#fff',
+          boxShadow: theme('boxShadow.md') + ', 0 0 0 2px var(--tw-btn-color)',
 
-      }
+        }
+      }, options.withFocusStyles),
     },
-    '.btn-shadow': {
-      boxShadow: theme('boxShadow.md'),
-      '@media (hover)': {
-        '&:hover': {
-          boxShadow: theme('boxShadow.lg'),
-        },
-      },
-      '&:active': {
-        boxShadow: theme('boxShadow.md'),
-      },
 
-    },
-    '.btn-text': {
+    [`.${options.className}-text`]: {
       width: 'auto',
       height: 'auto',
       padding: 0,
       background: 'transparent',
-
       borderRadius: 0,
       color: 'var(--tw-btn-color)',
       '@media (hover)': {
-        '&:hover': {
+        [getStateSelector('hover', options)]: {
           background: 'none',
         },
       },
 
-      '&:focus:not(:active)': {
-        background: 'var(--tw-btn-color-light)',
-        boxShadow: '0 0 0 5px var(--tw-btn-color-light)',
-      }
+      ...optional({
+        [getStateSelector('focus:not(:active)', options)]: {
+          background: 'var(--tw-btn-color-light)',
+          boxShadow: '0 0 0 5px var(--tw-btn-color-light)',
+        }
+      }, options.withFocusStyles),
     },
-    '.btn-icon': {
+    [`.${options.className}-icon`]: {
       minWidth: 'var(--size)',
       width: 'var(--size)',
       padding: 0,
     },
-    '.btn:disabled': {
-      opacity: '0.4',
+    [`.${options.className}:disabled`]: {
+      opacity: options.disabledOpacity,
       pointerEvents: 'none',
     }
   })
@@ -130,7 +146,8 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
   // size
   matchUtilities(
     {
-      btn: (size) => {
+      [options.className]: (size) => {
+        // check is not color
         const string = size.DEFAULT || size[500] || size
         const parsed = parseColor(string)
         if (!!parsed?.color) return null
@@ -144,22 +161,25 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
   // colors
   matchUtilities(
     {
-      btn: (color) => {
+      [options.className]: (color) => {
+        // check is color
         const string = color.DEFAULT || color[500] || color
         const parsed = parseColor(string)
         if (!parsed?.color) return null
 
         const [r, g, b] = parsed.color
         const hex = '#' + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)
-        const hovered = checkColorShade(hex, -25) != 0 ? colorShade(hex, -25) : colorShade(hex, 25)
+        const hovered = checkColorShade(hex, -options.colorHoverOffset) != 0 ?
+          colorShade(hex, -options.colorHoverOffset) :
+          colorShade(hex, options.colorHoverOffset)
 
         return ({
           '--tw-btn-color': string,
-          '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: 0.10 }),
+          '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: options.lightColorOpacity }),
           '@media (hover)': {
-            '&:hover': {
+            [getStateSelector('hover', options)]: {
               '--tw-btn-color': hovered,
-              '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: 0.20 }),
+              '--tw-btn-color-light': formatColor({ mode: 'rgba', color: parsed.color, alpha: options.lightColorOpacityHover }),
             }
           },
         })
@@ -172,7 +192,7 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
   )
 
 
-}, {
+}, (options = defaultOptions) => ({
   theme: {
     extend: {
       btnSize: {
@@ -183,10 +203,9 @@ module.exports = plugin(function ({ addComponents, matchUtilities, theme }) {
         xl: '56px',
         ['2xl']: '64px',
       }
-
     }
   }
-})
+}))
 
 function colorShade(color, amount) {
 
@@ -242,4 +261,17 @@ function checkColorShade(col, amt) {
   else if (g < 0) g = 0;
 
   return (g | (b << 8) | (r << 16)).toString(16);
+}
+
+function optional(object, flag) {
+  return flag ? object : {}
+}
+
+function getStateSelector(state, options) {
+  return (
+    ` &:${state}, 
+      &:is(${options.targetGroupSelector}:${state} .${options.className}), 
+      &:is(${options.targetPeerSelector}:${state}~.${options.className})`
+  )
+
 }

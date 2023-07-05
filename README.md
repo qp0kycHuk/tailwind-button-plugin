@@ -98,14 +98,28 @@ npm install @qpokychuk/tailwind-button-plugin --save-dev
 
 ## Установка тени кнопки
 
-Управляйте тенью кнопки с помощью класса `btn-shadow` или с помощью утилит `shadow` из tailwind.
+Управляйте тенью кнопки с помощью утилит `shadow` из tailwind.
 
 ```html
-<button class="btn btn-shadow ...">text here</button>
 <button class="btn shadow-md hover:shadow-xl active:shadow-md ...">text here</button>
 ```
 
 ![Screenshot_5](https://user-images.githubusercontent.com/42573149/227129226-e3b069c8-4699-42d8-bb52-9ee39b32e115.jpg)
+
+## Target selector
+
+Используйте Target selector чтобы эффекты наведения, фокуса, и клика срабатывали на кнопке при наведении, фокусе, и клике на родительский элемент
+
+```html
+<a class="absolute inset-0 flex btn-group">
+  <button class="btn m-auto">text here</button>
+</a>
+
+<a class="absolute inset-0 flex btn-peer">text here</a>
+...
+<button class="btn m-auto">icon</button>
+
+```
 
 
 ## Настройка вашей темы
@@ -127,6 +141,48 @@ npm install @qpokychuk/tailwind-button-plugin --save-dev
   }
 }
 ```
+
+
+## Конфигурация
+
+Вы можете настроить плагин с помощью опций
+Используйте вызов плагина с объектом конфигурации:
+```js
+// tailwind.config.js
+{    
+  plugins: [
+    require('./tailwind.button.js')({
+      className: 'btn',
+      disabledOpacity: 0.4,
+      colorHoverOffset: 25,
+      lightColorOpacity: 0.1,
+      lightColorOpacityHover: 0.2,
+      transition: '.2s ease',
+      withFocusStyles: false,
+      targetGroupSelector: '.btn-group',
+      targetPeerSelector: '.btn-peer',
+      activeStiles: {
+        transform: 'translateY(2px)',
+      }
+    }),
+  ],
+}
+```
+
+| Параметр | Значение по умолчанию | Описание |
+|---|---|---|
+| className | `'btn'` | Базовый класс для кнопок. Вы можете использовать свой, например `'ui-button'`, тогда ваши классы будут выглядеть так: `ui-button ui-button-indigo ui-button-contur ...` |
+| disabledOpacity | `0.4` | Определяет непрозрачность неактивной кнопки  |
+| colorHoverOffset | `25` | Определяет смещение цвета при наведении, т.е на сколько кнопка потемнеет при наведении. Чтобы кнопка светлела при наведении используйте отрицательное значение  |
+| lightColorOpacity | `0.1` | Определяет непрозрачность для light-цвета кнопки который используется например в light-варианте |
+| lightColorOpacityHover | `0.2` | Определяет непрозрачность для lightColorOpacity при наведении |
+| transition | `'.2s ease'` | Определяет значение transition |
+| withFocusStyles | `false` | Если включено будут добавлены эффекты для состояния фокуса |
+| targetGroupSelector | `'.btn-group'` | Селектор для передачи состояния от родителя к кнопке |
+| targetPeerSelector | `'.btn-peer'` | Селектор для передачи состояния от соседа к кнопке |
+| activeStiles | `{  transform: 'translateY(2px)' }` | Стили для состояния при нажатии в синтаксисе CssInJs |
+
+
 
 
 [Поддержать автора](https://www.tinkoff.ru/rm/yuferov.sergey18/NC17C11734)
