@@ -96,17 +96,15 @@ module.exports = plugin.withOptions((opts) => function ({ addComponents, matchUt
     },
     [`.${options.className}-whitebg`]: {
       background: '#fff',
-      boxShadow: theme('boxShadow.md'),
       '@media (hover)': {
         [getStateSelector('hover', options)]: {
-          background: '#fff',
-          boxShadow: theme('boxShadow.lg'),
+          background: '#fff'
         },
       },
       ...optional({
         [getStateSelector('focus:not(:active)', options)]: {
           background: '#fff',
-          boxShadow: theme('boxShadow.md') + ', 0 0 0 2px var(--tw-btn-color)',
+          boxShadow: '0 0 0 2px var(--tw-btn-color)',
 
         }
       }, options.withFocusStyles),
@@ -116,15 +114,13 @@ module.exports = plugin.withOptions((opts) => function ({ addComponents, matchUt
       width: 'auto',
       height: 'auto',
       padding: 0,
-      background: 'transparent',
-      borderRadius: 0,
+      background: 'none',
       color: 'var(--tw-btn-color)',
       '@media (hover)': {
         [getStateSelector('hover', options)]: {
           background: 'none',
         },
       },
-
       ...optional({
         [getStateSelector('focus:not(:active)', options)]: {
           background: 'var(--tw-btn-color-light)',
