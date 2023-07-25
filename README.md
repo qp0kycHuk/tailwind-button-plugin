@@ -151,7 +151,7 @@ npm install @qpokychuk/tailwind-button-plugin --save-dev
 // tailwind.config.js
 {    
   plugins: [
-    require('./tailwind.button.js')({
+    require('@qpokychuk/tailwind-button-plugin')({
       className: 'btn',
       disabledOpacity: 0.4,
       colorHoverOffset: 25,
