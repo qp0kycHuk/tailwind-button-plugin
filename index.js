@@ -144,7 +144,12 @@ module.exports = plugin.withOptions((opts) => function ({ addComponents, matchUt
     {
       [options.className]: (size) => {
         // check is not color
-        const string = size.DEFAULT || size[500] || size
+        let string = size.DEFAULT || size[500] || size
+
+        if (typeof size == 'function') {
+          string = size({});
+        }
+
         const parsed = parseColor(string)
         if (!!parsed?.color) return null
 
