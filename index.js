@@ -4,6 +4,7 @@ const { parseColor, formatColor } = require('tailwindcss/lib/util/color')
 
 const defaultOptions = {
   className: 'btn',
+  baseStyles: {},
   disabledOpacity: 0.4,
   colorHoverOffset: 15,
   lightColorOpacity: 0.1,
@@ -36,6 +37,7 @@ module.exports = plugin.withOptions((opts) => function ({ addComponents, matchUt
       transition: options.transition,
       color: 'var(--tw-btn-color)',
       userSelect: 'none',
+      ...options.baseStyles,
       '@media (hover)': {
         [getStateSelector('hover', options)]: {
           background: 'var(--tw-btn-color-light)',
