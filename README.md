@@ -46,14 +46,13 @@ npm install @qpokychuk/tailwind-button-plugin --save-dev
 ## Установка варианта кнопки
 
 Управляйте вариантом кнопки с помощью утилит `btn-{variant}`.
-Доступны варианты: `fill` | `contur` | `light` | `whitebg` | `text`
+Доступны варианты: `fill` | `contur` | `light` | `text`
 
 ```html
 <button class="btn ...">text here</button>
 <button class="btn btn-fill ...">text here</button>
 <button class="btn btn-contur ...">text here</button>
 <button class="btn btn-light ...">text here</button>
-<button class="btn btn-whitebg ...">text here</button>
 <button class="btn btn-text ...">text here</button>
 ```
 
@@ -153,17 +152,26 @@ npm install @qpokychuk/tailwind-button-plugin --save-dev
   plugins: [
     require('@qpokychuk/tailwind-button-plugin')({
       className: 'btn',
-      disabledOpacity: 0.4,
-      colorHoverOffset: 25,
+      baseStyles: {},
+      colorHoverOffset: 15,
       lightColorOpacity: 0.1,
       lightColorOpacityHover: 0.2,
-      transition: '.2s ease',
       withFocusStyles: false,
       targetGroupSelector: '.btn-group',
       targetPeerSelector: '.btn-peer',
-      activeStiles: {
+      hoverStyles: {
+        background: 'var(--tw-btn-color-light)',
+      },
+      focusStyles: {
+        zIndex: '2',
+      },
+      activeStyles: {
         transform: 'translateY(2px)',
-      }
+      },
+      disabledStyles: {
+        opacity: '0.4',
+        pointerEvents: 'none',
+      },
     }),
   ],
 }
@@ -177,11 +185,13 @@ npm install @qpokychuk/tailwind-button-plugin --save-dev
 | colorHoverOffset | `25` | Определяет смещение цвета при наведении, т.е на сколько кнопка потемнеет при наведении. Чтобы кнопка светлела при наведении используйте отрицательное значение  |
 | lightColorOpacity | `0.1` | Определяет непрозрачность для light-цвета кнопки который используется например в light-варианте |
 | lightColorOpacityHover | `0.2` | Определяет непрозрачность для lightColorOpacity при наведении |
-| transition | `'.2s ease'` | Определяет значение transition |
 | withFocusStyles | `false` | Если включено будут добавлены эффекты для состояния фокуса |
 | targetGroupSelector | `'.btn-group'` | Селектор для передачи состояния от родителя к кнопке |
 | targetPeerSelector | `'.btn-peer'` | Селектор для передачи состояния от соседа к кнопке |
-| activeStiles | `{  transform: 'translateY(2px)' }` | Стили для состояния при нажатии в синтаксисе CssInJs |
+| hoverStyles | `{  background: 'var(--tw-btn-color-light)' }` | Стили для состояния при наведении |
+| focusStyles | `{  zIndex: '2' }` | Стили для состояния в фокусе |
+| activeStyles | `{  transform: 'translateY(2px)' }` | Стили для состояния при нажатии |
+| disabledStyles | `{ opacity: '0.4', pointerEvents: 'none' }` | Стили для неактивной кнопки |
 
 
 
