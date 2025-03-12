@@ -29,7 +29,7 @@ const defaultOptions: ButtonOptions = {
   },
 }
 
-module.exports = plugin.withOptions<ButtonOptions>((opts) => function (api) {
+export default plugin.withOptions<ButtonOptions>((opts) => function (api) {
   const { addComponents, theme } = api
   const options: ButtonOptions = {
     ...defaultOptions,

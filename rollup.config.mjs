@@ -13,6 +13,13 @@ export default {
     // ES
     {
       file: 'dist/index.esm.js', format: 'es',
+    },
+    // UMD
+    {
+      file: 'dist/index.umd.min.js',
+      format: 'umd',
+      name: 'tailwind-button-plugin',
+      indent: false,
     }
   ],
   plugins: [
