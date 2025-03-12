@@ -86,6 +86,4 @@ export default plugin.withOptions<ButtonOptions>((opts) => function (api) {
       }
     }
   }
-}))
-
-
+})) as ReturnType<typeof plugin.withOptions>

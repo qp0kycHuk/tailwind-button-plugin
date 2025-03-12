@@ -1,16 +1,18 @@
-import { PluginAPI } from "tailwindcss/types/config";
+
+import { PluginAPI } from "tailwindcss/plugin";
 import { ButtonOptions } from "./types";
 import { getStateSelector } from "./utils";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
-const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
-const { parseColor, formatColor } = require('tailwindcss/lib/util/color')
+// const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
+// const { parseColor, formatColor } = require('tailwindcss/lib/util/color')
 
 type Color = Record<string, string> | ((args: any) => string) | string
 
 export function colorUtilities({ matchUtilities, theme }: PluginAPI, options: ButtonOptions) {
   matchUtilities(
     {
-      [options.className]: (color: Color) => {
+      [options.className]: (color: Color)  => {
         let string
 
         if (typeof color === 'string') {
@@ -23,7 +25,7 @@ export function colorUtilities({ matchUtilities, theme }: PluginAPI, options: Bu
 
         const parsed = parseColor(string)
 
-        if (!parsed?.color) return null
+        if (!parsed?.color) return {}
 
         const hovered = 'color-mix(in srgb, ' + string + ' ' + (100 - options.colorHoverOffset) + '%, black)'
 
