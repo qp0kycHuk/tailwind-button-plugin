@@ -1,4 +1,4 @@
-import { PluginAPI } from "tailwindcss/types/config";
+import { PluginAPI } from "tailwindcss/plugin";
 import { ButtonOptions } from "./types";
 
 export function sizeUtilities({ matchUtilities, theme }: PluginAPI, options: ButtonOptions) {
@@ -6,9 +6,11 @@ export function sizeUtilities({ matchUtilities, theme }: PluginAPI, options: But
     {
       [options.className]: (size) => {
         // check is not color
+        // @ts-ignore
         let string = size.DEFAULT || size[500] || size
 
         if (typeof size == 'function') {
+          // @ts-ignore
           string = size({});
         }
 

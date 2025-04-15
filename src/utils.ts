@@ -1,7 +1,6 @@
-import { CSSRuleObject } from "tailwindcss/types/config"
-import { ButtonOptions } from "./types"
+import { ButtonOptions, CssInJs } from "./types"
 
-export function optional(flag: boolean, object: CSSRuleObject) {
+export function optional(flag: boolean, object: CssInJs) {
   return flag ? object : {}
 }
 

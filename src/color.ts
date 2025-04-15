@@ -1,19 +1,17 @@
 
 import { PluginAPI } from "tailwindcss/plugin";
-import { ButtonOptions } from "./types";
+import { ButtonOptions, CssInJs } from "./types";
 import { getStateSelector } from "./utils";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
-
-// const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
-// const { parseColor, formatColor } = require('tailwindcss/lib/util/color')
+import { parseColor, formatColor } from './color.utils'
 
 type Color = Record<string, string> | ((args: any) => string) | string
 
 export function colorUtilities({ matchUtilities, theme }: PluginAPI, options: ButtonOptions) {
   matchUtilities(
     {
-      [options.className]: (color: Color)  => {
-        let string
+      [options.className]: (color: Color): CssInJs => {
+        let string: string
 
         if (typeof color === 'string') {
           string = color

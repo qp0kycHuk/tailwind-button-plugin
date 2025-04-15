@@ -1,18 +1,21 @@
-import { CSSRuleObject } from "tailwindcss/types/config"
+
+export type CssInJs = {
+  [key: string]: string | string[] | CssInJs | CssInJs[];
+};
 
 export type ButtonOptions = {
   className: string,
-  baseStyles: CSSRuleObject,
+  baseStyles: CssInJs,
   colorHoverOffset: number,
   lightColorOpacity: number,
   lightColorOpacityHover: number,
   withFocusStyles: boolean,
   targetGroupSelector: string,
   targetPeerSelector: string,
-  activeStyles: CSSRuleObject,
-  disabledStyles: CSSRuleObject,
-  hoverStyles: CSSRuleObject,
-  focusStyles: CSSRuleObject,
+  activeStyles: CssInJs,
+  disabledStyles: CssInJs,
+  hoverStyles: CssInJs,
+  focusStyles: CssInJs,
 }
 
-export type ButtonVariant = (options: ButtonOptions) => Record<string, CSSRuleObject>
+export type ButtonVariant = (options: ButtonOptions) => Record<string, CssInJs>
